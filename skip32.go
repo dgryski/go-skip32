@@ -1,3 +1,6 @@
+// Copyright (c) 2012 Damian Gryski <damian@gryski.com>
+// Licensed under the GPLv3 or, at your option, any later version.
+
 /*
 
    Skip32 is a 32-bit block cipher based on SKIPJACK, written by Greg Rose of QUALCOMM Australia.
