@@ -12,6 +12,10 @@
    This library deliberately exposes only the integer obfuscation routines and
    hides the low-level encryption.
 
+   Using this routine to hide IDs is not sufficient security by itself.  Please
+   ensure your application does secondary validation and do not rely on the
+   secrecy of the generated IDs.
+
 */
 package dskip32
 
