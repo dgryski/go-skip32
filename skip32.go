@@ -48,7 +48,7 @@ func g(key []byte, k int, w uint16) uint16 {
 	g1 := byte((w >> 8) & 0xff)
 	g2 := byte(w & 0xff)
 
-	g3 := ftable[g2^key[(4*k)%10]] ^ g1
+	g3 := ftable[g2^key[(4*k+0)%10]] ^ g1
 	g4 := ftable[g3^key[(4*k+1)%10]] ^ g2
 	g5 := ftable[g4^key[(4*k+2)%10]] ^ g3
 	g6 := ftable[g5^key[(4*k+3)%10]] ^ g4
