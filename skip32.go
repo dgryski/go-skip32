@@ -91,18 +91,16 @@ type Skip32 struct {
 	key []byte
 }
 
-// New returns a new Skip32 obfuscator
+// New returns a new Skip32 obfuscator.  key must be 10 bytes (80 bits).
 func New(key []byte) (*Skip32, error) {
 
-	l := len(key)
-
-	if l != 10 {
+	if l := len(key); l != 10 {
 		return nil, errors.New("Invalid key size: " + strconv.Itoa(l))
 	}
 
 	s := new(Skip32)
 
-	s.key = make([]byte, l)
+	s.key = make([]byte, 10)
 
 	copy(s.key, key)
 
