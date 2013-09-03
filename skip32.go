@@ -1,20 +1,20 @@
 // Copyright (c) 2012 Damian Gryski <damian@gryski.com>
 // Licensed under the GPLv3 or, at your option, any later version.
 
+// Package dskip32 implements the Skip32 blockcipher
 /*
+Skip32 is a 32-bit block cipher based on SKIPJACK, written by Greg Rose of QUALCOMM Australia.
 
-   Skip32 is a 32-bit block cipher based on SKIPJACK, written by Greg Rose of QUALCOMM Australia.
+It is useful for obfuscating small integers (like sequential database ids)
+that are exposed to prevent an analysis of growth rates as in:
+https://en.wikipedia.org/wiki/German_tank_problem
 
-   It is useful for obfuscating small integers (like sequential database ids)
-   that are exposed to prevent an analysis of growth rates as in:
-   https://en.wikipedia.org/wiki/German_tank_problem
+This library deliberately exposes only the integer obfuscation routines and
+hides the low-level encryption.
 
-   This library deliberately exposes only the integer obfuscation routines and
-   hides the low-level encryption.
-
-   Using this routine to hide IDs is not sufficient security by itself.  Please
-   ensure your application does secondary validation and do not rely on the
-   secrecy of the generated IDs.
+Using this routine to hide IDs is not sufficient security by itself.  Please
+ensure your application does secondary validation and do not rely on the
+secrecy of the generated IDs.
 
 */
 package dskip32
@@ -86,11 +86,12 @@ func crypt32(key []byte, buf []byte, encrypt bool) {
 	buf[3] = byte(wl & 0xFF)
 }
 
+// Skip32 is a 32-bit integer obfuscator
 type Skip32 struct {
 	key []byte
 }
 
-// New returns a Skip32-based integer obfuscator with a 10-byte key
+// New returns a new Skip32 obfuscator
 func New(key []byte) (*Skip32, error) {
 
 	l := len(key)
@@ -159,7 +160,7 @@ func (s *Skip32) Obfus64(id uint64) uint64 {
 	return uint64(ca)<<32 | uint64(cb)
 }
 
-// Unobfus64 unobfuscates a uint64
+// UnObfus64 unobfuscates a uint64
 func (s *Skip32) UnObfus64(id uint64) uint64 {
 
 	// as two 32-bit integers
