@@ -1,4 +1,4 @@
-package dskip32
+package skip32
 
 import (
 	"testing"
