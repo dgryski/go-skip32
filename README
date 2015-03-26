@@ -1,6 +1,6 @@
 This library is an implementation of the SKIP32 encryption algorithm.
 Copyright (c) Damian Gryski <damian@gryski.com>
-Licensed under the GPLv3 or, at your option, any later version.
+Licensed under MIT
 
 SKIP32 is a 32-bit block cipher by Greg Rose, based on the SKIPJACK cipher.  It
 is useful for performing simple integer obfuscation, for example disguising
