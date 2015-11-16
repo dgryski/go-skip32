@@ -143,33 +143,3 @@ func (s *Skip32) Unobfus(id uint32) uint32 {
 	return j
 
 }
-
-// Obfus64 obfuscates a uint64
-func (s *Skip32) Obfus64(id uint64) uint64 {
-
-	// as two 32-bit integers
-	ida := uint32(id >> 32)
-	idb := uint32(id & 0x00000000fffffffff)
-
-	// use skip32/cbc
-	ca := s.Obfus(ida)
-	idb ^= ca
-	cb := s.Obfus(idb)
-
-	return uint64(ca)<<32 | uint64(cb)
-}
-
-// UnObfus64 unobfuscates a uint64
-func (s *Skip32) UnObfus64(id uint64) uint64 {
-
-	// as two 32-bit integers
-	ca := uint32(id >> 32)
-	cb := uint32(id & 0x00000000ffffffff)
-
-	// undo the skip32/cbc
-	ida := s.Unobfus(ca)
-	idb := s.Unobfus(cb)
-	idb ^= ca
-
-	return uint64(ida)<<32 | uint64(idb)
-}

@@ -42,12 +42,4 @@ func TestObfus(t *testing.T) {
 	if p != 3493209676 {
 		t.Errorf("id unobfuscate failed: got %x expected 3493209676", c)
 	}
-
-	c64 := obfu.Obfus64(0x0ddc0ff33badf00d)
-
-	p64 := obfu.UnObfus64(c64)
-
-	if p64 != 0x0ddc0ff33badf00d {
-		t.Errorf("id unobfuscate failed: got %016x expected 0x0ddc0ff33badf00d", p64)
-	}
 }
